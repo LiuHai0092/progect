@@ -1,12 +1,30 @@
 <!DOCTYPE html>
 <html>
+
 	<head>
 		<meta charset="UTF-8">
 		<title></title>
 	</head>
+
 	<body>
+		<div id="time"></div>
+		<div></div>
 		<script type="text/javascript">
-			
+			//创建B包
+			(function() {
+				var time = {
+					"format":"yyyy-MM-dd",
+					"show": function(dom) {
+						setInterval(function() {
+							var date = new Date();
+							document.querySelector(dom).innerText = date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
+						}, 1000);
+					}
+				};
+				this.Time = time;
+			})(); //加括号，自调用
+			Time.show("#time")
 		</script>
 	</body>
+
 </html>
