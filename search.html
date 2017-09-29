@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>搜索栏</title>
+		<script type="text/javascript" src="js/jquery-2.2.4.min.js" ></script>
+		<script type="text/javascript" src="js/jquery.cookie.js" ></script>
+		<script type="text/javascript">
+			var uname=$.cookie("uname");
+			if (!uname) {
+				$.cookie("uname","张三");
+			}else{
+				alert(uname);
+			}
+			
+		</script>
+	</head>
+	<body>
+		
+	</body>
+</html>
