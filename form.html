@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>表单</title>
+	</head>
+	<style type="text/css">
+		.error {
+			color: red;
+			font-size: 12px;
+			margin-left: 10px;
+		}
+	</style>
+
+	<body>
+		<form>
+			<div>
+				<lable>用户名：</lable><input class="error" type="text" name="uname"></div>
+			<div>
+				<lable>手机号：</lable><input class="error" type="text" name="tel"></div>
+			<div>
+				<lable>密码：</lable><input class="error" type="text" name="pwd"></div>
+			<div>
+				<lable>邮箱：</lable><input class="error" type="text" name="email"></div>
+			<div><button>提交</button></div>
+		</form>
+		<script type="text/javascript" src="js/jquery-2.2.4.min.js"></script>
+		<script type="text/javascript" src="plugin/jquery-validation-1.17.0/jquery.validate.min.js"></script>
+		<script type="text/javascript" src="plugin/jquery-validation-1.17.0/localization/messages_zh.min.js"></script>
+		<script type="text/javascript">
+			//自定义密码验证的方法
+			jQuery.validator.addMethod("pwd", function(value, element) {
+				return /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9a-zA-Z]{6,10}$/.test(value);
+			}, "密码为6~12个字母和数字的组合！");
+
+			$("form").validate({
+				rules: {
+					uname: {
+						required: true,
+						rangelength: [6, 12]
+					},
+					tel: {
+						required: true
+					},
+					pwd:{
+						required: true,
+						pwd:true
+					}
+				},
+				messages: {
+					uname: {
+						required: "用户名不能为空！",
+						rangelength: "用户名只能是6~12位字符！"
+					},
+					tel: {
+						required: "手机号码不能为空！"
+					},
+					pwd:{
+						required: "密码不能为空！",
+						pwd:"密码为6~12个字母和数字的组合！"
+					}
+				}
+			})
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title>商品展示</title>
+		<style type="text/css">
+			.goods_box {
+				width: 200px;
+				height: 200px;
+				border: 1px solid #666;
+				position: relative;
+				overflow: hidden;
+			}
+			
+			.goods_box:hover {
+				cursor: move;
+			}
+			
+			.goods_box>img {
+				width: 100%;
+			}
+			
+			.goods_box .sweep_box {
+				width: 50px;
+				height: 50px;
+				background: #000;
+				position: absolute;
+				top: 0;
+				left: 0;
+				opacity: 0.4;
+				display: none;
+			}
+			
+			.good_review_box {
+				position:relative;
+				width: 400px;
+				height: 400px;
+				overflow: hidden;
+				border: 1px solid #666666;
+				top: -200px;
+				left: 205px;
+				display: none;
+			}
+			.good_review_box img{
+				position: absolute;
+			}
+		</style>
+		<link rel="stylesheet" href="css/public.css" />
+	</head>
+
+	<body>
+		<div class="goods_box">
+			<img src="https://gju1.alicdn.com/bao/uploaded/i2/TB17H_JSpXXXXaEXVXXXXXXXXXX_!!0-item_pic.jpg_560x560Q90.jpg" />
+			<div class="sweep_box"></div>
+		</div>
+		<div class="good_review_box">
+			<img src="https://gju1.alicdn.com/bao/uploaded/i2/TB17H_JSpXXXXaEXVXXXXXXXXXX_!!0-item_pic.jpg_560x560Q90.jpg" />
+		</div>
+		<div class="goods_img">
+			<img src="">
+			<img src="">
+			<img src="">
+		</div>
+		<script type="text/javascript" src="js/jquery-2.2.4.min.js"></script>
+		<script type="text/javascript">
+			var $sweep;
+			$(function() {
+				$(".goods_box").mousemove(function(event) {
+					console.log(event.pageX + ":" + event.pageY);
+					//获得left的位置
+					var $sweep = $(this).find(".sweep_box:eq(0)");
+					//获得top的位置
+					var left = event.pageX - $sweep.width() / 2;
+					var top = event.pageY - $sweep.height() / 2;
+					//扫描框移动
+					$sweep.css({
+						"left": left,
+						"top": top
+					});
+					//大图片移动
+					$(".good_review_box>img").css({
+//						if(){
+//							
+//						}
+						"left":-(left*2),
+						"top":-(top*2)
+					})
+				}).hover(function() {
+					$(this).find(".sweep_box:eq(0)").show();
+					$(".good_review_box").show();
+				}, function() {
+					$(this).find(".sweep_box:eq(0)").hide();
+					$(".good_review_box").hide();
+				})
+			})
+			
+		</script>
+	</body>
+
+</html>
